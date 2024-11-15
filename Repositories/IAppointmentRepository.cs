@@ -8,6 +8,7 @@ namespace AssessmentEmpleabilidad.Repositories
         Task<AppointmentDto?> GetAppointmentById(int id);
         Task<IEnumerable<AppointmentDto>> SearchAppointmentsByPatientId(int patientId);
         Task AddAppointment(AppointmentDto appointmentDto);
+        Task UpdateAppointment(AppointmentDto appointmentDto);
         Task DeleteAppointment(int id);
     }
 }

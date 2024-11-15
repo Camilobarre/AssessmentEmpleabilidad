@@ -69,6 +69,16 @@ namespace AssessmentEmpleabilidad.Services
             await _context.SaveChangesAsync();
         }
 
+        public async Task UpdateAppointment(AppointmentDto appointmentDto)
+        {
+            var appointment = await _context.Appointments.FindAsync(appointmentDto.Id);
+            if (appointment == null) return;
+            appointment.Date = appointmentDto.Date;
+            appointment.PatientId = appointmentDto.PatientId;
+            appointment.DoctorId = appointmentDto.DoctorId;
+            await _context.SaveChangesAsync();
+        }
+
         public async Task DeleteAppointment(int id)
         {
             var appointment = await _context.Appointments.FindAsync(id);

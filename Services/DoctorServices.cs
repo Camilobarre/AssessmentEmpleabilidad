@@ -53,6 +53,15 @@ namespace AssessmentEmpleabilidad.Services
             await _context.SaveChangesAsync();
         }
 
+        public async Task UpdateDoctor(DoctorDto doctorDto)
+        {
+            var doctor = await _context.Doctors.FindAsync(doctorDto.Id);
+            if (doctor == null) return;
+            doctor.Name = doctorDto.Name;
+            doctor.Specialization = doctorDto.Specialization;
+            await _context.SaveChangesAsync();
+        }
+
         public async Task DeleteDoctor(int id)
         {
             var doctor = await _context.Doctors.FindAsync(id);
