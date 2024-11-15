@@ -22,6 +22,7 @@ namespace AssessmentEmpleabilidad.Services
                 {
                     Id = u.Id,
                     Username = u.Username,
+                    Email = u.Email,
                     Role = u.Role.ToString()
                 }).ToListAsync();
         }
@@ -31,12 +32,14 @@ namespace AssessmentEmpleabilidad.Services
             var user = await _context.Users
                 .FirstOrDefaultAsync(u => u.Id == id);
 
-            if (user == null) return null;
+            if (user == null)
+                return null;
 
             return new UserDto
             {
                 Id = user.Id,
                 Username = user.Username,
+                Email = user.Email,
                 Role = user.Role.ToString()
             };
         }
@@ -46,6 +49,8 @@ namespace AssessmentEmpleabilidad.Services
             var user = new User
             {
                 Username = userDto.Username,
+                Email = userDto.Email,
+                Password = userDto.Password,
                 Role = Enum.TryParse(userDto.Role, out UserRole role) ? role : UserRole.Patient
             };
 

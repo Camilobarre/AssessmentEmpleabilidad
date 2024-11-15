@@ -1,4 +1,7 @@
+using AssessmentEmpleabilidad.Config;
 using AssessmentEmpleabilidad.Data;
+using AssessmentEmpleabilidad.Repositories;
+using AssessmentEmpleabilidad.Services;
 using DotNetEnv;
 using Microsoft.EntityFrameworkCore;
 
@@ -21,6 +24,14 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseMySql(connectionString, ServerVersion.Parse("8.0.20-mysql")));
 
 // Add services to the container.
+builder.Services.AddScoped<IAppointmentRepository, AppointmentServices>();
+builder.Services.AddScoped<IDoctorRepository, DoctorServices>();
+builder.Services.AddScoped<IPatientRepository, PatientServices>();
+builder.Services.AddScoped<IUserRepository, UserServices>();
+builder.Services.AddScoped<IScheduleRepository, ScheduleServices>();
+builder.Services.AddScoped<IUtilities, Utilities>();
+
+builder.Services.AddSingleton<Utilities>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

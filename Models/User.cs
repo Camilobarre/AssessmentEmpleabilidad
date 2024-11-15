@@ -15,10 +15,16 @@ namespace AssessmentEmpleabilidad.Models
         [Column("Username")]
         public string? Username { get; set; }
 
+        [Required(ErrorMessage = "Email is required.")]
+        [EmailAddress(ErrorMessage = "Invalid email address format.")]
+        [MaxLength(100, ErrorMessage = "Email must be at most {1} characters.")]
+        [Column("email")]
+        public required string Email { get; set; }
+
         [Required]
         [StringLength(255)]
         [Column("PasswordHash")]
-        public string? Password { get; set; } // Password hashed
+        public string? Password { get; set; }
 
         [Required]
         [Column("UserRole")]
